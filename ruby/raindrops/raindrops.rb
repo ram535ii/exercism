@@ -1,26 +1,13 @@
-require "prime"
-
 class Raindrops
   VERSION=1
+
   def self.convert(number)
-    prime_factors = Prime.prime_division(number).flatten
     result = ""
-    if prime_factors.include? 3
-      result = result + "Pling"
-    end
+    result += "Pling" if number % 3 == 0
+    result += "Plang" if number % 5 == 0
+    result += "Plong" if number % 7 == 0
 
-    if prime_factors.include? 5
-      result = result + "Plang"
-    end
-
-    if prime_factors.include? 7
-      result = result + "Plong"
-    end
-
-    if result == ""
-      result = number.to_s
-    end
-
+    result = number.to_s if result == ""
     result
   end
 end
