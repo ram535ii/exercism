@@ -26,22 +26,14 @@ class Fixnum
     digits.reverse.each_with_index do |val, index|
       next if val == 0
       numerals = VALUES[index]
-      if val == 1
-        roman_digit = numerals[1]
-      elsif val == 2
-        roman_digit = numerals[1] * 2
-      elsif val == 3
-        roman_digit = numerals[1] * 3
+      if val <= 3
+        roman_digit = numerals[1] * val
       elsif val == 4
         roman_digit = numerals[1] + numerals[5]
       elsif val == 5
         roman_digit = numerals[5]
-      elsif val == 6
-        roman_digit = numerals[5] + numerals[1]
-      elsif val == 7
-        roman_digit = numerals[5] + numerals[1] * 2
-      elsif val == 8
-        roman_digit = numerals[5] + numerals[1] * 3
+      elsif val <= 8
+        roman_digit = numerals[5] + numerals[1] * (val - 5)
       elsif val == 9
         roman_digit = numerals[1] + numerals[10]
       elsif val == 10
