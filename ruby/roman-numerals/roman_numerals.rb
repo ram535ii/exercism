@@ -19,7 +19,7 @@ class Fixnum
     3 => {
       1 => "M"
     }
-  }
+  }.freeze
   def to_roman
     result = ""
 
@@ -29,9 +29,9 @@ class Fixnum
       if val == 1
         roman_digit = numerals[1]
       elsif val == 2
-        roman_digit = numerals[1] + numerals[1]
+        roman_digit = numerals[1] * 2
       elsif val == 3
-        roman_digit = numerals[1] + numerals[1] + numerals[1]
+        roman_digit = numerals[1] * 3
       elsif val == 4
         roman_digit = numerals[1] + numerals[5]
       elsif val == 5
@@ -39,9 +39,9 @@ class Fixnum
       elsif val == 6
         roman_digit = numerals[5] + numerals[1]
       elsif val == 7
-        roman_digit = numerals[5] + numerals[1] + numerals[1]
+        roman_digit = numerals[5] + numerals[1] * 2
       elsif val == 8
-        roman_digit = numerals[5] + numerals[1] + numerals[1] + numerals[1]
+        roman_digit = numerals[5] + numerals[1] * 3
       elsif val == 9
         roman_digit = numerals[1] + numerals[10]
       elsif val == 10
