@@ -36,8 +36,6 @@ class Fixnum
         roman_digit = numerals[5] + numerals[1] * (val - 5)
       elsif val == 9
         roman_digit = numerals[1] + numerals[10]
-      elsif val == 10
-        roman_digit = numerals[10]
       end
       result = "#{roman_digit}#{result}"
     end
