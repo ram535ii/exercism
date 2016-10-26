@@ -1,0 +1,4 @@
+# scala
+.keep
+*.sbt
+scala/**/*/target/
