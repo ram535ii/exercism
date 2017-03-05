@@ -2,10 +2,10 @@ class Prime
   def self.nth(n)
     raise ArgumentError.new("'n' must be positive") if n < 1
 
-    primes = []
+    primes = [2]
     candidate = 1
 
-    while n > primes.length
+    until n == primes.length
       candidate += 1
 
       if primes.none? { |prime| candidate % prime == 0 }
@@ -13,7 +13,7 @@ class Prime
       end
     end
 
-    primes[-1]
+    primes.last
   end
 end
 
