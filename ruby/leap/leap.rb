@@ -1,10 +1,6 @@
 module Year
   def self.leap?(year)
-    if is_divisible_by(year, 100)
-      is_divisible_by(year, 400)
-    else
-      is_divisible_by(year, 4)
-    end
+    is_divisible_by(year, 400) || is_divisible_by(year, 4) && !is_divisible_by(year, 100)
   end
 
   def self.is_divisible_by(dividend, divisor)
