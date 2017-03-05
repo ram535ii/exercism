@@ -1,11 +1,17 @@
 module Year
   def self.leap?(year)
-    if year % 100 == 0
-      year % 400 == 0
+    if is_divisible_by(year, 100)
+      is_divisible_by(year, 400)
     else
-      year % 4 == 0
+      is_divisible_by(year, 4)
     end
   end
+
+  def self.is_divisible_by(dividend, divisor)
+    dividend % divisor == 0
+  end
+
+  private_class_method :is_divisible_by
 end
 
 module BookKeeping
