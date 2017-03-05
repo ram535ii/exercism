@@ -8,11 +8,9 @@ class Prime
     while n > primes.length
       candidate += 1
 
-      if primes.any? { |prime| candidate % prime == 0 }
-        next
+      if primes.none? { |prime| candidate % prime == 0 }
+        primes.push(candidate)
       end
-
-      primes.push(candidate)
     end
 
     primes[-1]
