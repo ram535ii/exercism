@@ -1,13 +1,10 @@
 class Bob
   def self.hey(remark)
-    if is_shouting(remark)
-      "Whoa, chill out!"
-    elsif is_question(remark)
-      "Sure."
-    elsif is_silent(remark)
-    "Fine. Be that way!"
-    else
-      "Whatever."
+    case
+      when is_shouting(remark) then "Whoa, chill out!"
+      when is_question(remark) then "Sure."
+      when is_silent(remark) then "Fine. Be that way!"
+      else "Whatever."
     end
   end
 
@@ -27,7 +24,7 @@ class Bob
   private_class_method :has_letters
 
   def self.is_question(remark)
-    remark[-1] == "?"
+    remark.end_with?("?")
   end
   private_class_method :is_question
 
