@@ -1,10 +1,15 @@
 class Bob
+  SHOUT_RESPONSE = "Whoa, chill out!"
+  QUESTION_RESPONSE = "Sure."
+  SILENT_RESPONSE = "Fine. Be that way!"
+  DEFAULT_RESPONSE = "Whatever."
+
   def self.hey(remark)
     case
-      when is_shouting(remark) then "Whoa, chill out!"
-      when is_question(remark) then "Sure."
-      when is_silent(remark) then "Fine. Be that way!"
-      else "Whatever."
+      when is_shouting(remark) then SHOUT_RESPONSE
+      when is_question(remark) then QUESTION_RESPONSE
+      when is_silent(remark) then SILENT_RESPONSE
+      else DEFAULT_RESPONSE
     end
   end
 
