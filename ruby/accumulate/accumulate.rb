@@ -1,10 +1,8 @@
-class Object
+class Array
   def accumulate(&block)
-    result = []
-    each do |element|
-      result.push(block.call(element))
-    end
-    result
+    head, *tail = self
+    return [] unless head
+    [block.call(head)] + tail.accumulate(&block)
   end
 end
 
