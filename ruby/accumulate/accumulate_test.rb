@@ -41,6 +41,10 @@ class ArrayTest < Minitest::Test
     assert_equal copy, original
   end
 
+  def test_enum_returned_if_no_block_given
+    assert_equal Enumerator, [1, 4, 9].accumulate.class
+  end
+
   # Problems in exercism evolve over time, as we find better ways to ask
   # questions.
   # The version number refers to the version of the problem you solved,

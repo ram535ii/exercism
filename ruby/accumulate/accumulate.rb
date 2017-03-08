@@ -1,5 +1,13 @@
+# Enable tail call optimization
+RubyVM::InstructionSequence.compile_option = {
+  tailcall_optimization: true,
+  trace_instruction: false
+}
+
 class Array
   def accumulate(&block)
+    return to_enum unless block_given?
+
     tco_accumulate(&block)
   end
 
