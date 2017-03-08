@@ -1,8 +1,14 @@
 class Array
   def accumulate(&block)
+    tco_accumulate(&block)
+  end
+
+  def tco_accumulate(acc=[], &block)
     head, *tail = self
-    return [] unless head
-    [block.call(head)] + tail.accumulate(&block)
+    return acc unless head
+
+    acc << block.call(head)
+    tail.tco_accumulate(acc, &block)
   end
 end
 
