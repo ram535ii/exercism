@@ -4,7 +4,7 @@ class SumOfMultiples
   end
 
   def to(non_inclusive_upper_limit)
-    @numbers_to_multiply.map do |num|
+    @numbers_to_multiply.flat_map do |num|
       acc = 0
       results = []
       # could do this with a recursive func
@@ -13,6 +13,6 @@ class SumOfMultiples
         acc += num
       end
       results
-    end.flatten.uniq.reduce(:+)
+    end.uniq.reduce(:+)
   end
 end
