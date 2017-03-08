@@ -6,7 +6,7 @@ RubyVM::InstructionSequence.compile_option = {
 
 class Array
   def accumulate(&block)
-    return to_enum unless block_given?
+    return to_enum(:accumulate) {size} unless block_given?
 
     tco_accumulate(&block)
   end
