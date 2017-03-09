@@ -4,15 +4,11 @@ class SumOfMultiples
   end
 
   def to(non_inclusive_upper_limit)
-    @numbers_to_multiply.flat_map do |num|
-      acc = 0
-      results = []
-      # could do this with a recursive func
-      until acc >= non_inclusive_upper_limit
-        results << acc
-        acc += num
-      end
-      results
-    end.uniq.reduce(:+)
+    sum = 0
+    (1..non_inclusive_upper_limit-1).each do |multiple|
+      sum += multiple if @numbers_to_multiply.any? { |number_to_multiply| multiple % number_to_multiply == 0 }
+    end
+
+    sum
   end
 end
