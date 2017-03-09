@@ -1,30 +1,18 @@
 class School
   def initialize
-    @cohorts = []
-  end
-
-  def add(name, grade)
-    if cohorts = find_grade(grade)
-      cohorts[:students] << name
-      cohorts[:students].sort!
-    else
-      @cohorts << {grade: grade, students: [name]}
-      @cohorts.sort_by! { |cohort| cohort[:grade] }
-    end
+    @cohorts = Hash.new { [] }
   end
 
   def students(grade)
-    grade = find_grade(grade)
-    grade ? grade[:students] : []
+    @cohorts[grade].sort
+  end
+
+  def add(name, grade)
+    @cohorts[grade] <<= name
   end
 
   def students_by_grade
-    @cohorts
-  end
-
-  private
-  def find_grade(grade)
-    @cohorts.find { |cohort| cohort[:grade] == grade }
+    @cohorts.keys.sort.map { |grade| {grade: grade, students: students(grade)} }
   end
 end
 
