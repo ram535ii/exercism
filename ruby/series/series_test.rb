@@ -10,16 +10,19 @@ class SeriesTest < Minitest::Test
   end
 
   def test_simple_slices_of_one_again
+
     series = Series.new('92834')
     assert_equal ['9', '2', '8', '3', '4'], series.slices(1)
   end
 
   def test_simple_slices_of_two
+
     series = Series.new('01234')
     assert_equal ['01', '12', '23', '34'], series.slices(2)
   end
 
   def test_other_slices_of_two
+
     series = Series.new('98273463')
     expected = ['98', '82', '27', '73', '34', '46', '63']
     assert_equal expected, series.slices(2)

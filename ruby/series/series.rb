@@ -6,14 +6,10 @@ class Series
 
   def slices(n)
     raise ArgumentError.new("n can't be greater than the string length") unless @whole_string_length >= n
-    bottom_limit = 0
-    substrings = []
 
-    while bottom_limit + n <= @whole_string_length do
-      substrings << @whole_string.slice(bottom_limit, n)
-      bottom_limit += 1
+    max_substring_start_index = @whole_string_length - n
+    (0..max_substring_start_index).to_a.map do |start_index|
+      @whole_string.slice(start_index, n)
     end
-
-    substrings
   end
 end
