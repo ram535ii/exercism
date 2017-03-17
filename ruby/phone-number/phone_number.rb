@@ -1,5 +1,7 @@
 class PhoneNumber
   INVALID = "0" * 10
+  USA_COUNTRY_CODE = "1"
+  USA_NUM_LENGTH = 10
 
   def initialize(number_string)
     @clean_number = clean_phone_number(number_string)
@@ -18,22 +20,23 @@ class PhoneNumber
   end
 
     private
-      def clean_phone_number raw_number
-        valid_chars_removed = remove_valid_chars(raw_number)
-        country_code_removed = remove_usa_country_code(valid_chars_removed)
-        valid_number?(country_code_removed) ? country_code_removed : INVALID
+      def clean_phone_number(raw_number)
+        num_without_valid_chars = remove_valid_chars(raw_number)
+        country_code_free_num = remove_usa_country_code(num_without_valid_chars)
+        valid_number?(country_code_free_num) ? country_code_free_num : INVALID
       end
 
-      def remove_valid_chars(raw_number)
-        raw_number.gsub(/[\(\)\.\-\s]/, "")
+      def remove_valid_chars(num)
+        num.gsub(/[\(\)\.\-\s]/, "")
       end
 
       def remove_usa_country_code(num)
-        num.length == 11 && num[0] == "1" ? num[1..-1] : num
+        return num[1..-1] if num.length == USA_NUM_LENGTH + 1 && num[0] == USA_COUNTRY_CODE
+        num
       end
 
       def valid_number?(num)
-        num.length == 10 && num.match(/\D/).nil?
+        num.length == USA_NUM_LENGTH && num.match(/\D/).nil?
       end
 end
 
