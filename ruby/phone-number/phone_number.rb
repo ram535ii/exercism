@@ -1,41 +1,39 @@
 class PhoneNumber
+  INVALID = "0" * 10
+
   def initialize(number_string)
-    @raw_number = number_string
-    @actual_number = validate_and_return_phone_number
+    @clean_number = clean_phone_number(number_string)
   end
 
   def number
-    @actual_number
+    @clean_number
   end
 
   def area_code
-    @actual_number[0..2]
+    @clean_number[0..2]
   end
 
   def to_s
-    "(#{@actual_number[0..2]}) #{@actual_number[3..5]}-#{@actual_number[6..-1]}"
+    "(#{@clean_number[0..2]}) #{@clean_number[3..5]}-#{@clean_number[6..-1]}"
   end
 
     private
-      def not_valid_phone_number
-        "0000000000"
+      def clean_phone_number raw_number
+        valid_chars_removed = remove_valid_chars(raw_number)
+        country_code_removed = remove_usa_country_code(valid_chars_removed)
+        valid_number?(country_code_removed) ? country_code_removed : INVALID
       end
 
-      def validate_and_return_phone_number
-        sanitized_number = @raw_number.gsub(/\D/, "")
-        return not_valid_phone_number if @raw_number.scan(/\d/).length == 10 && @raw_number.gsub(/\W/, "").length > 10
+      def remove_valid_chars(raw_number)
+        raw_number.gsub(/[\(\)\.\-\s]/, "")
+      end
 
-        if sanitized_number.length < 10 || sanitized_number.length > 11
-          not_valid_phone_number
-        elsif sanitized_number.length == 11
-          if sanitized_number[0] == "1"
-            sanitized_number[1..-1]
-          else
-            not_valid_phone_number
-          end
-        else
-          sanitized_number
-        end
+      def remove_usa_country_code(num)
+        num.length == 11 && num[0] == "1" ? num[1..-1] : num
+      end
+
+      def valid_number?(num)
+        num.length == 10 && num.match(/\D/).nil?
       end
 end
 
