@@ -1,5 +1,3 @@
-require 'prime'
-
 module PrimeFactors
   def self.for(number)
     result = []
