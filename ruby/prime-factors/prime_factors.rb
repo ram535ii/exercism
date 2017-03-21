@@ -2,13 +2,12 @@ require 'prime'
 
 module PrimeFactors
   def self.for(number)
-    remainder = number
     result = []
 
-    while(remainder > 1) do
-      divisor = (2..remainder).find { |num| remainder % num == 0 }
+    while(number > 1) do
+      divisor = (2..number).find { |num| number % num == 0 }
       result << divisor
-      remainder /= divisor
+      number /= divisor
     end
 
     result
