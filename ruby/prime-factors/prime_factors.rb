@@ -2,19 +2,15 @@ require 'prime'
 
 module PrimeFactors
   def self.for(number)
-    return [] if number == 1
-    recursive_for(number)
-  end
+    remainder = number
+    result = []
 
-  def self.recursive_for(number, acc=[])
-    return (acc << number) if Prime.prime?(number)
-
-    Prime.take_while { |p| p < number }.each do |p|
-      if number % p == 0
-        return recursive_for(number/p, acc << p)
-      end
+    while(remainder > 1) do
+      divisor = (2..remainder).find { |num| remainder % num == 0 }
+      result << divisor
+      remainder /= divisor
     end
-    recursive_for(number, acc)
+
+    result
   end
-  private_class_method :recursive_for
 end
