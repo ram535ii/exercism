@@ -1,9 +1,9 @@
 class Array
   def keep(&block)
-    self.map { |ele| block.call(ele) ? ele : nil }.compact
+    map { |ele| block.call(ele) ? ele : nil }.compact
   end
 
   def discard(&block)
-    self.map { |ele| block.call(ele) ? nil : ele }.compact
+    keep { |ele| !block.call(ele) }
   end
 end
