@@ -10,8 +10,7 @@ class Trinary
           .map { |char| char.to_i }
           .reverse
           .each_with_index
-          .map { |v, i| v * 3**i }
-          .reduce(:+)
+          .reduce(0) { |sum, (v, i)| sum += v * 3**i }
   end
 end
 
