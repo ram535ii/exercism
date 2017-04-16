@@ -7,10 +7,9 @@ class Trinary
     return 0 if @value.match(/[^0-2]/)
 
     @value.chars
-          .map { |char| char.to_i }
           .reverse
           .each_with_index
-          .reduce(0) { |sum, (v, i)| sum += v * 3**i }
+          .reduce(0) { |sum, (v, i)| sum += v.to_i * 3**i }
   end
 end
 
