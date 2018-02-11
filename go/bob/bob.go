@@ -1,25 +1,25 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package bob should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Package bob imitates a lackadaisical teenager
 package bob
 
 import (
 	"strings"
 )
 
-// Hey should have a comment documenting it.
+// Hey responds as bob would
 func Hey(remark string) string {
 	s := strings.TrimSpace(remark)
 
 	if isSilent(s) {
 		return "Fine. Be that way!"
-	} else if isQuestion(s) && isYelling(s) {
+	}
+	q := isQuestion(s)
+	y := isYelling(s)
+
+	if q && y {
 		return "Calm down, I know what I'm doing!"
-	} else if isQuestion(s) {
+	} else if q {
 		return "Sure."
-	} else if isYelling(s) {
+	} else if y {
 		return "Whoa, chill out!"
 	}
 	return "Whatever."
