@@ -3,8 +3,12 @@ package gigasecond
 
 import "time"
 
+const (
+	gigasecond = 1e9 * time.Second
+)
+
 // AddGigasecond adds an entire gigaesecond to the provided time
 func AddGigasecond(t time.Time) time.Time {
 	// yay for naive solution
-	return t.Add(time.Second * 1000000000)
+	return t.Add(gigasecond)
 }
